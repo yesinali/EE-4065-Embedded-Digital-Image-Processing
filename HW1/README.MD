@@ -10,7 +10,7 @@ The project demonstrates:
 - Observing and verifying results through the **Memory Window** in STM32CubeIDE.
 
 #### Giriş Görüntüsü
-![Original Image] (original_image.jpg)
+[Original Image] (original_image.jpg)
 
 ---
 
