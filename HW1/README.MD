@@ -78,11 +78,11 @@ Use **STM32CubeIDE → Debug → Memory Window** to:
 
 ## Project Structure
 
-Core/
-├── Inc/
-│ ├── image.h
-├── Src/
-│ ├── main.c
+Core/  
+├── Inc/  
+│ ├── image.h  
+├── Src/  
+│ ├── main.c  
 
 ---
 
@@ -108,5 +108,5 @@ Core/
 ---
 
 **Author:**  
-Muhammed Ali Yesin
+Muhammed Ali Yesin  
 Mehmet Karayazgan
