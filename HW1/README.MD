@@ -9,6 +9,9 @@ The project demonstrates:
 - Applying several intensity transformations directly on the microcontroller.  
 - Observing and verifying results through the **Memory Window** in STM32CubeIDE.
 
+## Original image
+![Original Image] (original_image.jpg)
+
 ---
 
 ## Q1 – Grayscale Image Creation and Display (40 points)
