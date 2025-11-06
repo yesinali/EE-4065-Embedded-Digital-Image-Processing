@@ -9,7 +9,7 @@ The project demonstrates:
 - Applying several intensity transformations directly on the microcontroller.  
 - Observing and verifying results through the **Memory Window** in STM32CubeIDE.
 
-## Original image
+#### Giriş Görüntüsü
 ![Original Image] (Startup/original_image.jpg)
 
 ---
