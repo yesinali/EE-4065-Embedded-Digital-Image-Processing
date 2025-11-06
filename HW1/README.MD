@@ -1,6 +1,7 @@
+
 # EE4065 – Embedded Digital Image Processing
 
-This repository contains the source files and project setup for **EE4065 – Embedded Digital Image Processing**, implemented on **STM32** using **STM32CubeIDE**.
+This repository contains the source files and project setup for **EE4065 – Embedded Digital Image Processing Homework 1**, implemented on **STM32F446** using **STM32CubeIDE**.
 
 ## Overview
 
@@ -11,10 +12,10 @@ The project demonstrates:
 
 ---
 
-## Q1 – Grayscale Image Creation and Display (40 points)
+## Q1 – Grayscale Image Creation and Display
 
 **Task summary:**
-1. Create a grayscale image of suitable size on your PC (e.g., 128×128 pixels, 8-bit grayscale).  
+1. Create a grayscale image of suitable size on your PC (e.g., 64×64 pixels, 8-bit grayscale).  
 2. Convert the image to a C header file (array of pixel values).  
 3. Add this header file to your STM32 project.  
 4. Display selected image entries by observing memory locations in STM32CubeIDE.
@@ -28,31 +29,42 @@ Use the **Memory Window** under STM32CubeIDE to check the image data stored in m
 
 ---
 
-## Q2 – Intensity Transformations (60 points)
+## Q2 – Intensity Transformations
 
 Apply the following transformations to the same image and verify the results using the memory viewer.
 
 ### a) Negative Image
 Compute the negative of each pixel value:
-\[
-s = 255 - r
-\]
+
+    s = 255 - r
+
 
 ### b) Thresholding
 Set pixel values above a certain threshold \( T \) to 255 and others to 0.
 
+    FUNCTION threshold(image, T = 116):
+        FOR each pixel p IN image:
+            p ← 255 IF p > T ELSE 0
+    END FUNCTION
+
 ### c) Gamma Correction
 Apply gamma correction for:
-- \( \gamma = 3 \)
-- \( \gamma = \frac{1}{3} \)
+- \( gamma = 3 \)
+- \( gamma = 1/3 \)
 
-\[
-s = 255 \times \left(\frac{r}{255}\right)^\gamma
-\]
+	    s = 255 * (r/255)^gamma
 
 ### d) Piecewise Linear Transformation
 Use a piecewise linear function based on the same threshold \( T \) from part (b).  
 Define two linear sections with different slopes to stretch or compress contrast in specific ranges.
+
+    FOR each pixel p IN image:
+        IF p ≤ T THEN
+            p ← (p / T) * 128
+        ELSE
+            p ← 128 + ((p - T) / (255 - T)) * 127
+        END IF
+    END FOR
 
 ---
 
@@ -69,28 +81,32 @@ Use **STM32CubeIDE → Debug → Memory Window** to:
 Core/
 ├── Inc/
 │ ├── image.h
-│ └── main.h
 ├── Src/
 │ ├── main.c
-│ └── transformations.c
 
 ---
 
 ## Notes
 
 - Use 8-bit unsigned integers (`uint8_t`) for pixel data.  
-- Keep arrays `volatile` so values remain visible in the Memory Window.  
-- Choose a small image to fit into MCU RAM (e.g., 128×128).  
+- Choose a small image to fit into MCU RAM (e.g., 64×64).  
 - The math library (`math.h`) may be required for gamma correction.  
-- Results and analysis should be added below.
 
 ---
 
-## Results and Discussion
+## Results
+![Original Image](outputs/original_image.jpg) 
 
-*(You can add screenshots, memory observations, or brief explanations here later.)*
+| *Transformed Images* | *Memory Entries*  |
+|--|--|
+| ![Negative Image](outputs/negative_output.jpg)  | ![Negative Image Memory](outputs/neg.jpg)  |
+| ![Threshold Image](outputs/threshold_output.jpg) | ![Threshold Image Memory](outputs/threshold.jpg) |
+| ![Gamma Correction when gamma is 3 ](outputs/gamma_3.jpg) | ![Image Memory](outputs/gc_3.jpg) |
+| ![Gamma Correction when gamma is 1/3](outputs/gamma1_3_output.jpg) | ![Image Memory](outputs/gc1_3.jpg) |
+| ![Piecewise Linear Transformation](outputs/piecewise_output.jpg) | ![Image Memory](outputs/pwlt.jpg) |
 
 ---
 
 **Author:**  
-EE4065 Embedded Digital Image Processing – Project Report
+Muhammed Ali Yesin
+Mehmet Karayazgan
