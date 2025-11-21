@@ -157,11 +157,11 @@ outputs/
 ├── orj.bmp        *(Original image)*  
 ├── eq.bmp         *(Histogram equalized image)*  
 ├── lp.bmp         *(Low-pass filtered image)*  
-├── lp_mem.bmp     *(Low-pass filter memory view)*  
+├── lp_mem.jpg     *(Low-pass filter memory view)*  
 ├── hp.bmp         *(High-pass filtered image)*  
-├── hp_mem.bmp     *(High-pass filter memory view)*  
+├── hp_mem.jpg     *(High-pass filter memory view)*  
 ├── med.bmp        *(Median filtered image)*  
-├── med_mem.bmp    *(Median filter memory view)*  
+├── med_mem.jpg    *(Median filter memory view)*  
 
 ---
 
