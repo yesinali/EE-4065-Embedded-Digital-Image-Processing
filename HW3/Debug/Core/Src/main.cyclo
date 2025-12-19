@@ -1,0 +1,7 @@
+../Core/Src/main.c:26:5:main	16
+../Core/Src/main.c:66:9:compute_otsu	7
+../Core/Src/main.c:84:6:morph_dilation	6
+../Core/Src/main.c:97:6:morph_erosion	6
+../Core/Src/main.c:110:6:SystemClock_Config	1
+../Core/Src/main.c:125:13:MX_USART2_UART_Init	1
+../Core/Src/main.c:135:13:MX_GPIO_Init	1
