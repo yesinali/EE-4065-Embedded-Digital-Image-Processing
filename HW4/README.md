@@ -1,4 +1,6 @@
 # EE4065 – Embedded Digital Image Processing
+Mehmet Karayazgan  150720070
+Muhammed Ali Yesin 150720066
 
 This repository contains the source code and implementation report for **EE4065 – Embedded Digital Image Processing Homework 4**, focused on handwritten digit recognition using the **MNIST dataset**. The project implements two distinct machine learning models—a single-neuron binary classifier and a multilayer neural network—using **Hu Moments** as the primary feature set.
 
@@ -73,3 +75,4 @@ The project demonstrates:
 └── outputs/
     ├── 1.png              # Confusion Matrix: Single Neuron Classifier
     └── 2.png              # Confusion Matrix: Neural Network
+
