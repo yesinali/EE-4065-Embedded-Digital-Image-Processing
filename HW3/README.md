@@ -70,5 +70,5 @@ The software architecture follows a strict request-response pattern:
 2. **Embedded Server (MCU):** Receives the raw byte-stream and executes the selected mathematical model ($O(N)$ for Otsu, $O(N \times K^2)$ for Morphology).
 3. **Synchronization:** Data integrity is maintained via a 115200 baud UART link with fixed-size packet framing.
 
-**Developed by:** [Your Name]
-**Academic Year:** 2025 - EE4065 Embedded Digital Image Processing
+Muhammed Ali Yesin 150720066
+Mehmet Karayazgan  150720070
