@@ -1,0 +1,36 @@
+--- ST AI Runner: MNIST Int8 Mode ---
+Reading image file: MNIST-dataset\t10k-images.idx3-ubyte
+Reading label file: MNIST-dataset\t10k-labels.idx1-ubyte
+   Dataset loaded (10000 images).
+2. Connecting to port COM8...
+   Model Found: network
+   Mode: CNN INPUT (28x28x1) [Int8]
+
+>>> MNIST CNN TEST (20 Random Images) <<<
+IDX    | REAL   | PRED   | RESULT
+--------------------------------------------------
+9144   | 9      | 9      | ✅
+5219   | 9      | 9      | ✅
+6969   | 1      | 1      | ✅
+9817   | 8      | 8      | ✅
+5455   | 2      | 2      | ✅
+8662   | 4      | 4      | ✅
+4279   | 2      | 2      | ✅
+3905   | 8      | 8      | ✅
+390    | 2      | 2      | ✅
+9998   | 5      | 5      | ✅
+1906   | 9      | 9      | ✅
+8058   | 1      | 1      | ✅
+5894   | 9      | 9      | ✅
+4766   | 5      | 5      | ✅
+4313   | 4      | 4      | ✅
+8934   | 8      | 8      | ✅
+4693   | 7      | 7      | ✅
+4089   | 7      | 7      | ✅
+8649   | 8      | 8      | ✅
+8071   | 4      | 4      | ✅
+--------------------------------------------------
+RESULT: 20/20 correct.
+ACCURACY RATE: 100.0%
+
+Connection closed.

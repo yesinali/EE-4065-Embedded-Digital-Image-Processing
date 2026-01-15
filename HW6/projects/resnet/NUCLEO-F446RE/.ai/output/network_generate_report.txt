@@ -1,0 +1,538 @@
+ST Edge AI Core v3.0.0-20426 123672867
+Created date          : 2026-01-15 18:41:27
+Parameters            : generate --workspace /tmp/rootDir-a5766b98-bc0b-4bb3-9d7f-b277982bd4cb/NUCLEO-F446RE/.ai --output /tmp/rootDir-a5766b98-bc0b-4bb3-9d7f-b277982bd4cb/NUCLEO-F446RE/.ai/output --quiet --split-weights --target stm32f4 --name network --optimization balanced --model resnet_digit.tflite --memory-pool /tmp/rootDir-a5766b98-bc0b-4bb3-9d7f-b277982bd4cb/NUCLEO-F446RE/.ai/mempools-board.json --memory-pool /tmp/rootDir-a5766b98-bc0b-4bb3-9d7f-b277982bd4cb/NUCLEO-F446RE/.ai/mempools-board.json
+
+Exec/report summary (generate)
+---------------------------------------------------------------------------------------------------------------------------
+model file         :   /tmp/rootDir-a5766b98-bc0b-4bb3-9d7f-b277982bd4cb/NUCLEO-F446RE/resnet_digit.tflite                 
+type               :   tflite                                                                                              
+c_name             :   network                                                                                             
+compression        :   lossless                                                                                            
+options            :   allocate-inputs, allocate-outputs, multi-heaps, split-weights, use-lite-runtime, use-st-ai          
+optimization       :   balanced                                                                                            
+target/series      :   stm32f4                                                                                             
+memory pool        :   /tmp/rootDir-a5766b98-bc0b-4bb3-9d7f-b277982bd4cb/NUCLEO-F446RE/.ai/mempools-board.json             
+workspace dir      :   /tmp/rootDir-a5766b98-bc0b-4bb3-9d7f-b277982bd4cb/NUCLEO-F446RE/.ai                                 
+output dir         :   /tmp/rootDir-a5766b98-bc0b-4bb3-9d7f-b277982bd4cb/NUCLEO-F446RE/.ai/output                          
+model_fmt          :   ss/sa per channel                                                                                   
+model_name         :   resnet_digit                                                                                        
+model_hash         :   0x7bfd705d85e1e343fa16d5069a8a6c68                                                                  
+params #           :   174,410 items (171.99 KiB)                                                                          
+---------------------------------------------------------------------------------------------------------------------------
+input 1/1          :   'serving_default_input0', int8(1x28x28x1), 784 Bytes, QLinear(0.003921569,-128,int8), activations   
+output 1/1         :   'nl_23', int8(1x10), 10 Bytes, QLinear(0.003906250,-128,int8), activations                          
+macc               :   20,231,696                                                                                          
+weights (ro)       :   176,120 B (171.99 KiB) (32 segments) / -521,520(-74.8%) vs float model                              
+activations (rw)   :   35,104 B (34.28 KiB) (1 segment) *                                                                  
+ram (total)        :   35,104 B (34.28 KiB) = 35,104 + 0 + 0                                                               
+---------------------------------------------------------------------------------------------------------------------------
+(*) 'input'/'output' buffers are allocated in the activations buffer
+ 
+ Memory-pools summary (activations/ domain)
+ ------------------------- ---- ------------------------ --------- 
+ name                      id   used                     buffer#   
+ ------------------------- ---- ------------------------ --------- 
+ POOL_0_RAM                0    34.28 KiB (29.8%)        53        
+ conv2d_0_weights_array    1    144 B (14400.0%)         1         
+ conv2d_0_bias_array       2    64 B (6400.0%)           1         
+ conv2d_1_weights_array    3    2.25 KiB (230400.0%)     1         
+ conv2d_1_bias_array       4    64 B (6400.0%)           1         
+ conv2d_2_weights_array    5    2.25 KiB (230400.0%)     1         
+ conv2d_2_bias_array       6    64 B (6400.0%)           1         
+ conv2d_4_weights_array    7    2.25 KiB (230400.0%)     1         
+ conv2d_4_bias_array       8    64 B (6400.0%)           1         
+ conv2d_5_weights_array    9    2.25 KiB (230400.0%)     1         
+ conv2d_5_bias_array       10   64 B (6400.0%)           1         
+ conv2d_9_weights_array    11   512 B (51200.0%)         1         
+ conv2d_9_bias_array       12   128 B (12800.0%)         1         
+ conv2d_7_weights_array    13   4.50 KiB (460800.0%)     1         
+ conv2d_7_bias_array       14   128 B (12800.0%)         1         
+ conv2d_8_weights_array    15   9.00 KiB (921600.0%)     1         
+ conv2d_8_bias_array       16   128 B (12800.0%)         1         
+ conv2d_11_weights_array   17   9.00 KiB (921600.0%)     1         
+ conv2d_11_bias_array      18   128 B (12800.0%)         1         
+ conv2d_12_weights_array   19   9.00 KiB (921600.0%)     1         
+ conv2d_12_bias_array      20   128 B (12800.0%)         1         
+ conv2d_14_weights_array   21   18.00 KiB (1843200.0%)   1         
+ conv2d_14_bias_array      22   256 B (25600.0%)         1         
+ conv2d_15_weights_array   23   36.00 KiB (3686400.0%)   1         
+ conv2d_15_bias_array      24   256 B (25600.0%)         1         
+ conv2d_16_weights_array   25   2.00 KiB (204800.0%)     1         
+ conv2d_16_bias_array      26   256 B (25600.0%)         1         
+ conv2d_18_weights_array   27   36.00 KiB (3686400.0%)   1         
+ conv2d_18_bias_array      28   256 B (25600.0%)         1         
+ conv2d_19_weights_array   29   36.00 KiB (3686400.0%)   1         
+ conv2d_19_bias_array      30   256 B (25600.0%)         1         
+ gemm_22_weights_array     31   640 B (64000.0%)         1         
+ gemm_22_bias_array        32   40 B (4000.0%)           1         
+ ------------------------- ---- ------------------------ --------- 
+
+Model name - resnet_digit
+------ ------------------------------------ ---------------------- --------------- ----------- ------------------------ --- --------------- ------------------- ---------------------- 
+m_id   layer (type,original)                oshape                 param/size             macc             connected to   | c_size          c_macc              c_type                 
+------ ------------------------------------ ---------------------- --------------- ----------- ------------------------ --- --------------- ------------------- ---------------------- 
+0      serving_default_input0 (Input, )     [b:1,h:28,w:28,c:1]                                                           | +208(+100.0%)   +112,912(+100.0%)   Conv2D_[0]             
+       conv2d_0 (Conv2D, CONV_2D)           [b:1,h:28,w:28,c:16]   160/208             112,912   serving_default_input0   | -208(-100.0%)   -112,912(-100.0%)   
+       nl_0_nl (Nonlinearity, CONV_2D)      [b:1,h:28,w:28,c:16]                        12,544                 conv2d_0   |                 -12,544(-100.0%)    
+------ ------------------------------------ ---------------------- --------------- ----------- ------------------------ --- --------------- ------------------- ---------------------- 
+1      conv2d_1 (Conv2D, CONV_2D)           [b:1,h:28,w:28,c:16]   2,320/2,368       1,806,352                  nl_0_nl   |                                     Pad_/Conv2D_[1, 2]     
+       nl_1_nl (Nonlinearity, CONV_2D)      [b:1,h:28,w:28,c:16]                        12,544                 conv2d_1   |                 -12,544(-100.0%)    
+------ ------------------------------------ ---------------------- --------------- ----------- ------------------------ --- --------------- ------------------- ---------------------- 
+2      conv2d_2 (Conv2D, CONV_2D)           [b:1,h:28,w:28,c:16]   2,320/2,368       1,806,352                  nl_1_nl   |                                     Pad_/Conv2D_[3, 4]     
+------ ------------------------------------ ---------------------- --------------- ----------- ------------------------ --- --------------- ------------------- ---------------------- 
+3      eltwise_3 (Eltwise, ADD)             [b:1,h:28,w:28,c:16]                        12,544                 conv2d_2   |                                     Eltwise/add_[5]        
+                                                                                                                nl_0_nl   | 
+       nl_3_nl (Nonlinearity, ADD)          [b:1,h:28,w:28,c:16]                        12,544                eltwise_3   |                 -12,544(-100.0%)    
+------ ------------------------------------ ---------------------- --------------- ----------- ------------------------ --- --------------- ------------------- ---------------------- 
+4      conv2d_4 (Conv2D, CONV_2D)           [b:1,h:28,w:28,c:16]   2,320/2,368       1,806,352                  nl_3_nl   |                                     Pad_/Conv2D_[6, 7]     
+       nl_4_nl (Nonlinearity, CONV_2D)      [b:1,h:28,w:28,c:16]                        12,544                 conv2d_4   |                 -12,544(-100.0%)    
+------ ------------------------------------ ---------------------- --------------- ----------- ------------------------ --- --------------- ------------------- ---------------------- 
+5      conv2d_5 (Conv2D, CONV_2D)           [b:1,h:28,w:28,c:16]   2,320/2,368       1,806,352                  nl_4_nl   |                                     Pad_/Conv2D_[8, 9]     
+------ ------------------------------------ ---------------------- --------------- ----------- ------------------------ --- --------------- ------------------- ---------------------- 
+6      eltwise_6 (Eltwise, ADD)             [b:1,h:28,w:28,c:16]                        12,544                 conv2d_5   |                                     Eltwise/add_[10]       
+                                                                                                                nl_3_nl   | 
+       nl_6_nl (Nonlinearity, ADD)          [b:1,h:28,w:28,c:16]                        12,544                eltwise_6   |                 -12,544(-100.0%)    
+------ ------------------------------------ ---------------------- --------------- ----------- ------------------------ --- --------------- ------------------- ---------------------- 
+7      conv2d_7 (Conv2D, CONV_2D)           [b:1,h:14,w:14,c:32]   4,640/4,736         903,200                  nl_6_nl   |                                     Conv2D_[12]            
+       nl_7_nl (Nonlinearity, CONV_2D)      [b:1,h:14,w:14,c:32]                         6,272                 conv2d_7   |                 -6,272(-100.0%)     
+------ ------------------------------------ ---------------------- --------------- ----------- ------------------------ --- --------------- ------------------- ---------------------- 
+8      conv2d_8 (Conv2D, CONV_2D)           [b:1,h:14,w:14,c:32]   9,248/9,344       1,806,368                  nl_7_nl   |                                     Pad_/Conv2D_[13, 14]   
+------ ------------------------------------ ---------------------- --------------- ----------- ------------------------ --- --------------- ------------------- ---------------------- 
+9      conv2d_9 (Conv2D, CONV_2D)           [b:1,h:14,w:14,c:32]   544/640             100,384                  nl_6_nl   |                                     Conv2D_[11]            
+------ ------------------------------------ ---------------------- --------------- ----------- ------------------------ --- --------------- ------------------- ---------------------- 
+10     eltwise_10 (Eltwise, ADD)            [b:1,h:14,w:14,c:32]                         6,272                 conv2d_8   |                                     Eltwise/add_[15]       
+                                                                                                               conv2d_9   | 
+       nl_10_nl (Nonlinearity, ADD)         [b:1,h:14,w:14,c:32]                         6,272               eltwise_10   |                 -6,272(-100.0%)     
+------ ------------------------------------ ---------------------- --------------- ----------- ------------------------ --- --------------- ------------------- ---------------------- 
+11     conv2d_11 (Conv2D, CONV_2D)          [b:1,h:14,w:14,c:32]   9,248/9,344       1,806,368                 nl_10_nl   |                                     Pad_/Conv2D_[16, 17]   
+       nl_11_nl (Nonlinearity, CONV_2D)     [b:1,h:14,w:14,c:32]                         6,272                conv2d_11   |                 -6,272(-100.0%)     
+------ ------------------------------------ ---------------------- --------------- ----------- ------------------------ --- --------------- ------------------- ---------------------- 
+12     conv2d_12 (Conv2D, CONV_2D)          [b:1,h:14,w:14,c:32]   9,248/9,344       1,806,368                 nl_11_nl   |                                     Pad_/Conv2D_[18, 19]   
+------ ------------------------------------ ---------------------- --------------- ----------- ------------------------ --- --------------- ------------------- ---------------------- 
+13     eltwise_13 (Eltwise, ADD)            [b:1,h:14,w:14,c:32]                         6,272                conv2d_12   |                                     Eltwise/add_[20]       
+                                                                                                               nl_10_nl   | 
+       nl_13_nl (Nonlinearity, ADD)         [b:1,h:14,w:14,c:32]                         6,272               eltwise_13   |                 -6,272(-100.0%)     
+------ ------------------------------------ ---------------------- --------------- ----------- ------------------------ --- --------------- ------------------- ---------------------- 
+14     conv2d_14 (Conv2D, CONV_2D)          [b:1,h:7,w:7,c:64]     18,496/18,688       903,232                 nl_13_nl   |                                     Pad_/Conv2D_[21, 22]   
+       nl_14_nl (Nonlinearity, CONV_2D)     [b:1,h:7,w:7,c:64]                           3,136                conv2d_14   |                 -3,136(-100.0%)     
+------ ------------------------------------ ---------------------- --------------- ----------- ------------------------ --- --------------- ------------------- ---------------------- 
+15     conv2d_15 (Conv2D, CONV_2D)          [b:1,h:7,w:7,c:64]     36,928/37,120     1,806,400                 nl_14_nl   |                                     Pad_/Conv2D_[23, 24]   
+------ ------------------------------------ ---------------------- --------------- ----------- ------------------------ --- --------------- ------------------- ---------------------- 
+16     conv2d_16 (Conv2D, CONV_2D)          [b:1,h:7,w:7,c:64]     2,112/2,304         100,416                 nl_13_nl   |                                     Conv2D_[25]            
+------ ------------------------------------ ---------------------- --------------- ----------- ------------------------ --- --------------- ------------------- ---------------------- 
+17     eltwise_17 (Eltwise, ADD)            [b:1,h:7,w:7,c:64]                           3,136                conv2d_15   |                                     Eltwise/add_[26]       
+                                                                                                              conv2d_16   | 
+       nl_17_nl (Nonlinearity, ADD)         [b:1,h:7,w:7,c:64]                           3,136               eltwise_17   |                 -3,136(-100.0%)     
+------ ------------------------------------ ---------------------- --------------- ----------- ------------------------ --- --------------- ------------------- ---------------------- 
+18     conv2d_18 (Conv2D, CONV_2D)          [b:1,h:7,w:7,c:64]     36,928/37,120     1,806,400                 nl_17_nl   |                                     Pad_/Conv2D_[27, 28]   
+       nl_18_nl (Nonlinearity, CONV_2D)     [b:1,h:7,w:7,c:64]                           3,136                conv2d_18   |                 -3,136(-100.0%)     
+------ ------------------------------------ ---------------------- --------------- ----------- ------------------------ --- --------------- ------------------- ---------------------- 
+19     conv2d_19 (Conv2D, CONV_2D)          [b:1,h:7,w:7,c:64]     36,928/37,120     1,806,400                 nl_18_nl   |                                     Pad_/Conv2D_[29, 30]   
+------ ------------------------------------ ---------------------- --------------- ----------- ------------------------ --- --------------- ------------------- ---------------------- 
+20     eltwise_20 (Eltwise, ADD)            [b:1,h:7,w:7,c:64]                           3,136                conv2d_19   |                                     Eltwise/add_[31]       
+                                                                                                               nl_17_nl   | 
+       nl_20_nl (Nonlinearity, ADD)         [b:1,h:7,w:7,c:64]                           3,136               eltwise_20   |                 -3,136(-100.0%)     
+------ ------------------------------------ ---------------------- --------------- ----------- ------------------------ --- --------------- ------------------- ---------------------- 
+21     pool_21 (Pool, MEAN)                 [b:1,h:1,w:1,c:64]                           3,136                 nl_20_nl   |                                     Pool_[32]              
+       reshape_21_reshape (Reshape, MEAN)   [b:1,c:64]                                                          pool_21   |                                     
+------ ------------------------------------ ---------------------- --------------- ----------- ------------------------ --- --------------- ------------------- ---------------------- 
+22     tfl_pseudo_qconst1 (Placeholder, )   [b:10,c:64]            640/640                                                | +40(+6.2%)      +650(+100.0%)       Dense_[33]             
+       tfl_pseudo_qconst (Placeholder, )    [b:10]                 10/40                                                  | -40(-100.0%)                        
+       gemm_22 (Gemm, FULLY_CONNECTED)      [b:1,c:10]                                     650       reshape_21_reshape   |                 -650(-100.0%)       
+                                                                                                     tfl_pseudo_qconst1   | 
+                                                                                                      tfl_pseudo_qconst   | 
+------ ------------------------------------ ---------------------- --------------- ----------- ------------------------ --- --------------- ------------------- ---------------------- 
+23     nl_23 (Nonlinearity, SOFTMAX)        [b:1,c:10]                                     150                  gemm_22   |                                     Nonlinearity_[o][34]   
+------ ------------------------------------ ---------------------- --------------- ----------- ------------------------ --- --------------- ------------------- ---------------------- 
+model/c-model: macc=20,332,048/20,231,696 -100,352(-0.5%) weights=176,120/176,120  activations=--/35,104 io=--/0
+
+
+
+Generated C-graph summary
+------------------------------------------------------------------------------------------------------------------------
+model name            : resnet_digit
+c-name                : network
+c-node #              : 35
+c-array #             : 85
+activations size      : 35104 (1 segment)
+weights size          : 176120 (32 segments)
+macc                  : 20231696
+inputs                : ['serving_default_input0_output']
+outputs               : ['nl_23_output']
+
+C-Arrays (85)
+------ ------------------------------- ------------- --------------------------- ----------- --------- 
+c_id   name (*_array)                  item/size     domain/mem-pool             c-type      comment   
+------ ------------------------------- ------------- --------------------------- ----------- --------- 
+0      conv2d_0_bias                   16/64         weights/conv2d_0_bias       const s32             
+1      conv2d_0_output                 12544/12544   activations/POOL_0_RAM      s8                    
+2      conv2d_0_scratch0               548/548       activations/POOL_0_RAM      s8                    
+3      conv2d_0_weights                144/144       weights/conv2d_0_weights    const s8              
+4      conv2d_11_bias                  32/128        weights/conv2d_11_bias      const s32             
+5      conv2d_11_output                6272/6272     activations/POOL_0_RAM      s8                    
+6      conv2d_11_pad_before_output     8192/8192     activations/POOL_0_RAM      s8                    
+7      conv2d_11_scratch0              6720/6720     activations/POOL_0_RAM      s8                    
+8      conv2d_11_weights               9216/9216     weights/conv2d_11_weights   const s8              
+9      conv2d_12_bias                  32/128        weights/conv2d_12_bias      const s32             
+10     conv2d_12_output                6272/6272     activations/POOL_0_RAM      s8                    
+11     conv2d_12_pad_before_output     8192/8192     activations/POOL_0_RAM      s8                    
+12     conv2d_12_scratch0              6720/6720     activations/POOL_0_RAM      s8                    
+13     conv2d_12_weights               9216/9216     weights/conv2d_12_weights   const s8              
+14     conv2d_14_bias                  64/256        weights/conv2d_14_bias      const s32             
+15     conv2d_14_output                3136/3136     activations/POOL_0_RAM      s8                    
+16     conv2d_14_pad_before_output     8192/8192     activations/POOL_0_RAM      s8                    
+17     conv2d_14_scratch0              7168/7168     activations/POOL_0_RAM      s8                    
+18     conv2d_14_weights               18432/18432   weights/conv2d_14_weights   const s8              
+19     conv2d_15_bias                  64/256        weights/conv2d_15_bias      const s32             
+20     conv2d_15_output                3136/3136     activations/POOL_0_RAM      s8                    
+21     conv2d_15_pad_before_output     5184/5184     activations/POOL_0_RAM      s8                    
+22     conv2d_15_scratch0              8320/8320     activations/POOL_0_RAM      s8                    
+23     conv2d_15_weights               36864/36864   weights/conv2d_15_weights   const s8              
+24     conv2d_16_bias                  64/256        weights/conv2d_16_bias      const s32             
+25     conv2d_16_output                3136/3136     activations/POOL_0_RAM      s8                    
+26     conv2d_16_scratch0              768/768       activations/POOL_0_RAM      s8                    
+27     conv2d_16_weights               2048/2048     weights/conv2d_16_weights   const s8              
+28     conv2d_18_bias                  64/256        weights/conv2d_18_bias      const s32             
+29     conv2d_18_output                3136/3136     activations/POOL_0_RAM      s8                    
+30     conv2d_18_pad_before_output     5184/5184     activations/POOL_0_RAM      s8                    
+31     conv2d_18_scratch0              8320/8320     activations/POOL_0_RAM      s8                    
+32     conv2d_18_weights               36864/36864   weights/conv2d_18_weights   const s8              
+33     conv2d_19_bias                  64/256        weights/conv2d_19_bias      const s32             
+34     conv2d_19_output                3136/3136     activations/POOL_0_RAM      s8                    
+35     conv2d_19_pad_before_output     5184/5184     activations/POOL_0_RAM      s8                    
+36     conv2d_19_scratch0              8320/8320     activations/POOL_0_RAM      s8                    
+37     conv2d_19_weights               36864/36864   weights/conv2d_19_weights   const s8              
+38     conv2d_1_bias                   16/64         weights/conv2d_1_bias       const s32             
+39     conv2d_1_output                 12544/12544   activations/POOL_0_RAM      s8                    
+40     conv2d_1_pad_before_output      14400/14400   activations/POOL_0_RAM      s8                    
+41     conv2d_1_scratch0               5408/5408     activations/POOL_0_RAM      s8                    
+42     conv2d_1_weights                2304/2304     weights/conv2d_1_weights    const s8              
+43     conv2d_2_bias                   16/64         weights/conv2d_2_bias       const s32             
+44     conv2d_2_output                 12544/12544   activations/POOL_0_RAM      s8                    
+45     conv2d_2_pad_before_output      14400/14400   activations/POOL_0_RAM      s8                    
+46     conv2d_2_scratch0               5408/5408     activations/POOL_0_RAM      s8                    
+47     conv2d_2_weights                2304/2304     weights/conv2d_2_weights    const s8              
+48     conv2d_4_bias                   16/64         weights/conv2d_4_bias       const s32             
+49     conv2d_4_output                 12544/12544   activations/POOL_0_RAM      s8                    
+50     conv2d_4_pad_before_output      14400/14400   activations/POOL_0_RAM      s8                    
+51     conv2d_4_scratch0               5408/5408     activations/POOL_0_RAM      s8                    
+52     conv2d_4_weights                2304/2304     weights/conv2d_4_weights    const s8              
+53     conv2d_5_bias                   16/64         weights/conv2d_5_bias       const s32             
+54     conv2d_5_output                 12544/12544   activations/POOL_0_RAM      s8                    
+55     conv2d_5_pad_before_output      14400/14400   activations/POOL_0_RAM      s8                    
+56     conv2d_5_scratch0               5408/5408     activations/POOL_0_RAM      s8                    
+57     conv2d_5_weights                2304/2304     weights/conv2d_5_weights    const s8              
+58     conv2d_7_bias                   32/128        weights/conv2d_7_bias       const s32             
+59     conv2d_7_output                 6272/6272     activations/POOL_0_RAM      s8                    
+60     conv2d_7_scratch0               6144/6144     activations/POOL_0_RAM      s8                    
+61     conv2d_7_weights                4608/4608     weights/conv2d_7_weights    const s8              
+62     conv2d_8_bias                   32/128        weights/conv2d_8_bias       const s32             
+63     conv2d_8_output                 6272/6272     activations/POOL_0_RAM      s8                    
+64     conv2d_8_pad_before_output      8192/8192     activations/POOL_0_RAM      s8                    
+65     conv2d_8_scratch0               6720/6720     activations/POOL_0_RAM      s8                    
+66     conv2d_8_weights                9216/9216     weights/conv2d_8_weights    const s8              
+67     conv2d_9_bias                   32/128        weights/conv2d_9_bias       const s32             
+68     conv2d_9_output                 6272/6272     activations/POOL_0_RAM      s8                    
+69     conv2d_9_scratch0               1536/1536     activations/POOL_0_RAM      s8                    
+70     conv2d_9_weights                512/512       weights/conv2d_9_weights    const s8              
+71     eltwise_10_output               6272/6272     activations/POOL_0_RAM      s8                    
+72     eltwise_13_output               6272/6272     activations/POOL_0_RAM      s8                    
+73     eltwise_17_output               3136/3136     activations/POOL_0_RAM      s8                    
+74     eltwise_20_output               3136/3136     activations/POOL_0_RAM      s8                    
+75     eltwise_3_output                12544/12544   activations/POOL_0_RAM      s8                    
+76     eltwise_6_output                12544/12544   activations/POOL_0_RAM      s8                    
+77     gemm_22_bias                    10/40         weights/gemm_22_bias        const s32             
+78     gemm_22_output                  10/10         activations/POOL_0_RAM      s8                    
+79     gemm_22_scratch0                114/228       activations/POOL_0_RAM      s16                   
+80     gemm_22_weights                 640/640       weights/gemm_22_weights     const s8              
+81     nl_23_output                    10/10         activations/POOL_0_RAM      s8          /output   
+82     nl_23_scratch0                  248/992       activations/POOL_0_RAM      s32                   
+83     pool_21_output                  64/64         activations/POOL_0_RAM      s8                    
+84     serving_default_input0_output   784/784       activations/POOL_0_RAM      s8          /input    
+------ ------------------------------- ------------- --------------------------- ----------- --------- 
+
+C-Layers (35)
+------ ---------------------- ---- --------------- --------- ------- ---------------------------------- ----------------------- 
+c_id   name (*_layer)         id   layer_type      macc      rom     tensors                            shape (array id)        
+------ ---------------------- ---- --------------- --------- ------- ---------------------------------- ----------------------- 
+0      conv2d_0               0    Conv2D          112912    208     I: serving_default_input0_output   int8(1x28x28x1) (84)    
+                                                                     S: conv2d_0_scratch0                                       
+                                                                     W: conv2d_0_weights                int8(16x3x3x1) (3)      
+                                                                     W: conv2d_0_bias                   int32(16) (0)           
+                                                                     O: conv2d_0_output                 int8(1x28x28x16) (1)    
+------ ---------------------- ---- --------------- --------- ------- ---------------------------------- ----------------------- 
+1      conv2d_1_pad_before    1    Pad             0         0       I: conv2d_0_output                 int8(1x28x28x16) (1)    
+                                                                     O: conv2d_1_pad_before_output      int8(1x30x30x16) (40)   
+------ ---------------------- ---- --------------- --------- ------- ---------------------------------- ----------------------- 
+2      conv2d_1               1    Conv2D          1806352   2368    I: conv2d_1_pad_before_output      int8(1x30x30x16) (40)   
+                                                                     S: conv2d_1_scratch0                                       
+                                                                     W: conv2d_1_weights                int8(16x3x3x16) (42)    
+                                                                     W: conv2d_1_bias                   int32(16) (38)          
+                                                                     O: conv2d_1_output                 int8(1x28x28x16) (39)   
+------ ---------------------- ---- --------------- --------- ------- ---------------------------------- ----------------------- 
+3      conv2d_2_pad_before    2    Pad             0         0       I: conv2d_1_output                 int8(1x28x28x16) (39)   
+                                                                     O: conv2d_2_pad_before_output      int8(1x30x30x16) (45)   
+------ ---------------------- ---- --------------- --------- ------- ---------------------------------- ----------------------- 
+4      conv2d_2               2    Conv2D          1806352   2368    I: conv2d_2_pad_before_output      int8(1x30x30x16) (45)   
+                                                                     S: conv2d_2_scratch0                                       
+                                                                     W: conv2d_2_weights                int8(16x3x3x16) (47)    
+                                                                     W: conv2d_2_bias                   int32(16) (43)          
+                                                                     O: conv2d_2_output                 int8(1x28x28x16) (44)   
+------ ---------------------- ---- --------------- --------- ------- ---------------------------------- ----------------------- 
+5      eltwise_3              3    Eltwise/add     12544     0       I: conv2d_2_output                 int8(1x28x28x16) (44)   
+                                                                     I: conv2d_0_output                 int8(1x28x28x16) (44)   
+                                                                     O: eltwise_3_output                int8(1x28x28x16) (75)   
+------ ---------------------- ---- --------------- --------- ------- ---------------------------------- ----------------------- 
+6      conv2d_4_pad_before    4    Pad             0         0       I: eltwise_3_output                int8(1x28x28x16) (75)   
+                                                                     O: conv2d_4_pad_before_output      int8(1x30x30x16) (50)   
+------ ---------------------- ---- --------------- --------- ------- ---------------------------------- ----------------------- 
+7      conv2d_4               4    Conv2D          1806352   2368    I: conv2d_4_pad_before_output      int8(1x30x30x16) (50)   
+                                                                     S: conv2d_4_scratch0                                       
+                                                                     W: conv2d_4_weights                int8(16x3x3x16) (52)    
+                                                                     W: conv2d_4_bias                   int32(16) (48)          
+                                                                     O: conv2d_4_output                 int8(1x28x28x16) (49)   
+------ ---------------------- ---- --------------- --------- ------- ---------------------------------- ----------------------- 
+8      conv2d_5_pad_before    5    Pad             0         0       I: conv2d_4_output                 int8(1x28x28x16) (49)   
+                                                                     O: conv2d_5_pad_before_output      int8(1x30x30x16) (55)   
+------ ---------------------- ---- --------------- --------- ------- ---------------------------------- ----------------------- 
+9      conv2d_5               5    Conv2D          1806352   2368    I: conv2d_5_pad_before_output      int8(1x30x30x16) (55)   
+                                                                     S: conv2d_5_scratch0                                       
+                                                                     W: conv2d_5_weights                int8(16x3x3x16) (57)    
+                                                                     W: conv2d_5_bias                   int32(16) (53)          
+                                                                     O: conv2d_5_output                 int8(1x28x28x16) (54)   
+------ ---------------------- ---- --------------- --------- ------- ---------------------------------- ----------------------- 
+10     eltwise_6              6    Eltwise/add     12544     0       I: conv2d_5_output                 int8(1x28x28x16) (54)   
+                                                                     I: eltwise_3_output                int8(1x28x28x16) (54)   
+                                                                     O: eltwise_6_output                int8(1x28x28x16) (76)   
+------ ---------------------- ---- --------------- --------- ------- ---------------------------------- ----------------------- 
+11     conv2d_9               9    Conv2D          100384    640     I: eltwise_6_output                int8(1x28x28x16) (76)   
+                                                                     S: conv2d_9_scratch0                                       
+                                                                     W: conv2d_9_weights                int8(32x1x1x16) (70)    
+                                                                     W: conv2d_9_bias                   int32(32) (67)          
+                                                                     O: conv2d_9_output                 int8(1x14x14x32) (68)   
+------ ---------------------- ---- --------------- --------- ------- ---------------------------------- ----------------------- 
+12     conv2d_7               7    Conv2D          903200    4736    I: eltwise_6_output                int8(1x28x28x16) (76)   
+                                                                     S: conv2d_7_scratch0                                       
+                                                                     W: conv2d_7_weights                int8(32x3x3x16) (61)    
+                                                                     W: conv2d_7_bias                   int32(32) (58)          
+                                                                     O: conv2d_7_output                 int8(1x14x14x32) (59)   
+------ ---------------------- ---- --------------- --------- ------- ---------------------------------- ----------------------- 
+13     conv2d_8_pad_before    8    Pad             0         0       I: conv2d_7_output                 int8(1x14x14x32) (59)   
+                                                                     O: conv2d_8_pad_before_output      int8(1x16x16x32) (64)   
+------ ---------------------- ---- --------------- --------- ------- ---------------------------------- ----------------------- 
+14     conv2d_8               8    Conv2D          1806368   9344    I: conv2d_8_pad_before_output      int8(1x16x16x32) (64)   
+                                                                     S: conv2d_8_scratch0                                       
+                                                                     W: conv2d_8_weights                int8(32x3x3x32) (66)    
+                                                                     W: conv2d_8_bias                   int32(32) (62)          
+                                                                     O: conv2d_8_output                 int8(1x14x14x32) (63)   
+------ ---------------------- ---- --------------- --------- ------- ---------------------------------- ----------------------- 
+15     eltwise_10             10   Eltwise/add     6272      0       I: conv2d_8_output                 int8(1x14x14x32) (63)   
+                                                                     I: conv2d_9_output                 int8(1x14x14x32) (63)   
+                                                                     O: eltwise_10_output               int8(1x14x14x32) (71)   
+------ ---------------------- ---- --------------- --------- ------- ---------------------------------- ----------------------- 
+16     conv2d_11_pad_before   11   Pad             0         0       I: eltwise_10_output               int8(1x14x14x32) (71)   
+                                                                     O: conv2d_11_pad_before_output     int8(1x16x16x32) (6)    
+------ ---------------------- ---- --------------- --------- ------- ---------------------------------- ----------------------- 
+17     conv2d_11              11   Conv2D          1806368   9344    I: conv2d_11_pad_before_output     int8(1x16x16x32) (6)    
+                                                                     S: conv2d_11_scratch0                                      
+                                                                     W: conv2d_11_weights               int8(32x3x3x32) (8)     
+                                                                     W: conv2d_11_bias                  int32(32) (4)           
+                                                                     O: conv2d_11_output                int8(1x14x14x32) (5)    
+------ ---------------------- ---- --------------- --------- ------- ---------------------------------- ----------------------- 
+18     conv2d_12_pad_before   12   Pad             0         0       I: conv2d_11_output                int8(1x14x14x32) (5)    
+                                                                     O: conv2d_12_pad_before_output     int8(1x16x16x32) (11)   
+------ ---------------------- ---- --------------- --------- ------- ---------------------------------- ----------------------- 
+19     conv2d_12              12   Conv2D          1806368   9344    I: conv2d_12_pad_before_output     int8(1x16x16x32) (11)   
+                                                                     S: conv2d_12_scratch0                                      
+                                                                     W: conv2d_12_weights               int8(32x3x3x32) (13)    
+                                                                     W: conv2d_12_bias                  int32(32) (9)           
+                                                                     O: conv2d_12_output                int8(1x14x14x32) (10)   
+------ ---------------------- ---- --------------- --------- ------- ---------------------------------- ----------------------- 
+20     eltwise_13             13   Eltwise/add     6272      0       I: conv2d_12_output                int8(1x14x14x32) (10)   
+                                                                     I: eltwise_10_output               int8(1x14x14x32) (10)   
+                                                                     O: eltwise_13_output               int8(1x14x14x32) (72)   
+------ ---------------------- ---- --------------- --------- ------- ---------------------------------- ----------------------- 
+21     conv2d_14_pad_before   14   Pad             0         0       I: eltwise_13_output               int8(1x14x14x32) (72)   
+                                                                     O: conv2d_14_pad_before_output     int8(1x16x16x32) (16)   
+------ ---------------------- ---- --------------- --------- ------- ---------------------------------- ----------------------- 
+22     conv2d_14              14   Conv2D          903232    18688   I: conv2d_14_pad_before_output     int8(1x16x16x32) (16)   
+                                                                     S: conv2d_14_scratch0                                      
+                                                                     W: conv2d_14_weights               int8(64x3x3x32) (18)    
+                                                                     W: conv2d_14_bias                  int32(64) (14)          
+                                                                     O: conv2d_14_output                int8(1x7x7x64) (15)     
+------ ---------------------- ---- --------------- --------- ------- ---------------------------------- ----------------------- 
+23     conv2d_15_pad_before   15   Pad             0         0       I: conv2d_14_output                int8(1x7x7x64) (15)     
+                                                                     O: conv2d_15_pad_before_output     int8(1x9x9x64) (21)     
+------ ---------------------- ---- --------------- --------- ------- ---------------------------------- ----------------------- 
+24     conv2d_15              15   Conv2D          1806400   37120   I: conv2d_15_pad_before_output     int8(1x9x9x64) (21)     
+                                                                     S: conv2d_15_scratch0                                      
+                                                                     W: conv2d_15_weights               int8(64x3x3x64) (23)    
+                                                                     W: conv2d_15_bias                  int32(64) (19)          
+                                                                     O: conv2d_15_output                int8(1x7x7x64) (20)     
+------ ---------------------- ---- --------------- --------- ------- ---------------------------------- ----------------------- 
+25     conv2d_16              16   Conv2D          100416    2304    I: eltwise_13_output               int8(1x14x14x32) (72)   
+                                                                     S: conv2d_16_scratch0                                      
+                                                                     W: conv2d_16_weights               int8(64x1x1x32) (27)    
+                                                                     W: conv2d_16_bias                  int32(64) (24)          
+                                                                     O: conv2d_16_output                int8(1x7x7x64) (25)     
+------ ---------------------- ---- --------------- --------- ------- ---------------------------------- ----------------------- 
+26     eltwise_17             17   Eltwise/add     3136      0       I: conv2d_15_output                int8(1x7x7x64) (20)     
+                                                                     I: conv2d_16_output                int8(1x7x7x64) (20)     
+                                                                     O: eltwise_17_output               int8(1x7x7x64) (73)     
+------ ---------------------- ---- --------------- --------- ------- ---------------------------------- ----------------------- 
+27     conv2d_18_pad_before   18   Pad             0         0       I: eltwise_17_output               int8(1x7x7x64) (73)     
+                                                                     O: conv2d_18_pad_before_output     int8(1x9x9x64) (30)     
+------ ---------------------- ---- --------------- --------- ------- ---------------------------------- ----------------------- 
+28     conv2d_18              18   Conv2D          1806400   37120   I: conv2d_18_pad_before_output     int8(1x9x9x64) (30)     
+                                                                     S: conv2d_18_scratch0                                      
+                                                                     W: conv2d_18_weights               int8(64x3x3x64) (32)    
+                                                                     W: conv2d_18_bias                  int32(64) (28)          
+                                                                     O: conv2d_18_output                int8(1x7x7x64) (29)     
+------ ---------------------- ---- --------------- --------- ------- ---------------------------------- ----------------------- 
+29     conv2d_19_pad_before   19   Pad             0         0       I: conv2d_18_output                int8(1x7x7x64) (29)     
+                                                                     O: conv2d_19_pad_before_output     int8(1x9x9x64) (35)     
+------ ---------------------- ---- --------------- --------- ------- ---------------------------------- ----------------------- 
+30     conv2d_19              19   Conv2D          1806400   37120   I: conv2d_19_pad_before_output     int8(1x9x9x64) (35)     
+                                                                     S: conv2d_19_scratch0                                      
+                                                                     W: conv2d_19_weights               int8(64x3x3x64) (37)    
+                                                                     W: conv2d_19_bias                  int32(64) (33)          
+                                                                     O: conv2d_19_output                int8(1x7x7x64) (34)     
+------ ---------------------- ---- --------------- --------- ------- ---------------------------------- ----------------------- 
+31     eltwise_20             20   Eltwise/add     3136      0       I: conv2d_19_output                int8(1x7x7x64) (34)     
+                                                                     I: eltwise_17_output               int8(1x7x7x64) (34)     
+                                                                     O: eltwise_20_output               int8(1x7x7x64) (74)     
+------ ---------------------- ---- --------------- --------- ------- ---------------------------------- ----------------------- 
+32     pool_21                21   Pool            3136      0       I: eltwise_20_output               int8(1x7x7x64) (74)     
+                                                                     O: pool_21_output                  int8(1x1x1x64) (83)     
+------ ---------------------- ---- --------------- --------- ------- ---------------------------------- ----------------------- 
+33     gemm_22                22   Dense           650       680     I: pool_21_output                  int8(1x1x1x64) (83)     
+                                                                     S: gemm_22_scratch0                                        
+                                                                     W: gemm_22_weights                 int8(10x64) (80)        
+                                                                     W: gemm_22_bias                    int32(10) (77)          
+                                                                     O: gemm_22_output                  int8(1x10) (78)         
+------ ---------------------- ---- --------------- --------- ------- ---------------------------------- ----------------------- 
+34     nl_23                  23   Nonlinearity    150       0       I: gemm_22_output                  int8(1x10) (78)         
+                                                                     S: nl_23_scratch0                                          
+                                                                     O: nl_23_output                    int8(1x10) (81)         
+------ ---------------------- ---- --------------- --------- ------- ---------------------------------- ----------------------- 
+
+
+
+Number of operations per c-layer
+------- ------ ---------------------------- ------------ ------------ 
+c_id    m_id   name (type)                           #op         type 
+------- ------ ---------------------------- ------------ ------------ 
+0       0      conv2d_0 (Conv2D)                 112,912   smul_s8_s8 
+1       1      conv2d_1_pad_before (Pad)               0   smul_s8_s8 
+2       1      conv2d_1 (Conv2D)               1,806,352   smul_s8_s8 
+3       2      conv2d_2_pad_before (Pad)               0   smul_s8_s8 
+4       2      conv2d_2 (Conv2D)               1,806,352   smul_s8_s8 
+5       3      eltwise_3 (Eltwise/add)            12,544     op_s8_s8 
+6       4      conv2d_4_pad_before (Pad)               0   smul_s8_s8 
+7       4      conv2d_4 (Conv2D)               1,806,352   smul_s8_s8 
+8       5      conv2d_5_pad_before (Pad)               0   smul_s8_s8 
+9       5      conv2d_5 (Conv2D)               1,806,352   smul_s8_s8 
+10      6      eltwise_6 (Eltwise/add)            12,544     op_s8_s8 
+11      9      conv2d_9 (Conv2D)                 100,384   smul_s8_s8 
+12      7      conv2d_7 (Conv2D)                 903,200   smul_s8_s8 
+13      8      conv2d_8_pad_before (Pad)               0   smul_s8_s8 
+14      8      conv2d_8 (Conv2D)               1,806,368   smul_s8_s8 
+15      10     eltwise_10 (Eltwise/add)            6,272     op_s8_s8 
+16      11     conv2d_11_pad_before (Pad)              0   smul_s8_s8 
+17      11     conv2d_11 (Conv2D)              1,806,368   smul_s8_s8 
+18      12     conv2d_12_pad_before (Pad)              0   smul_s8_s8 
+19      12     conv2d_12 (Conv2D)              1,806,368   smul_s8_s8 
+20      13     eltwise_13 (Eltwise/add)            6,272     op_s8_s8 
+21      14     conv2d_14_pad_before (Pad)              0   smul_s8_s8 
+22      14     conv2d_14 (Conv2D)                903,232   smul_s8_s8 
+23      15     conv2d_15_pad_before (Pad)              0   smul_s8_s8 
+24      15     conv2d_15 (Conv2D)              1,806,400   smul_s8_s8 
+25      16     conv2d_16 (Conv2D)                100,416   smul_s8_s8 
+26      17     eltwise_17 (Eltwise/add)            3,136     op_s8_s8 
+27      18     conv2d_18_pad_before (Pad)              0   smul_s8_s8 
+28      18     conv2d_18 (Conv2D)              1,806,400   smul_s8_s8 
+29      19     conv2d_19_pad_before (Pad)              0   smul_s8_s8 
+30      19     conv2d_19 (Conv2D)              1,806,400   smul_s8_s8 
+31      20     eltwise_20 (Eltwise/add)            3,136     op_s8_s8 
+32      21     pool_21 (Pool)                      3,136   smul_s8_s8 
+33      22     gemm_22 (Dense)                       650   smul_s8_s8 
+34      23     nl_23 (Nonlinearity)                  150     op_s8_s8 
+------- ------ ---------------------------- ------------ ------------ 
+total                                         20,231,696 
+
+Number of operation types
+---------------- ------------ ----------- 
+operation type              #           % 
+---------------- ------------ ----------- 
+smul_s8_s8         20,187,642       99.8% 
+op_s8_s8               44,054        0.2% 
+
+Complexity report (model)
+------ ------------------------ ------------------------- ------------------------- ---------- 
+m_id   name                     c_macc                    c_rom                     c_id       
+------ ------------------------ ------------------------- ------------------------- ---------- 
+0      serving_default_input0   |                  0.6%   |                  0.1%   [0]        
+1      conv2d_1                 |||||||||||||||    8.9%   |                  1.3%   [1, 2]     
+2      conv2d_2                 |||||||||||||||    8.9%   |                  1.3%   [3, 4]     
+3      eltwise_3                |                  0.1%   |                  0.0%   [5]        
+4      conv2d_4                 |||||||||||||||    8.9%   |                  1.3%   [6, 7]     
+5      conv2d_5                 |||||||||||||||    8.9%   |                  1.3%   [8, 9]     
+6      eltwise_6                |                  0.1%   |                  0.0%   [10]       
+7      conv2d_7                 ||||||||           4.5%   ||                 2.7%   [12]       
+8      conv2d_8                 |||||||||||||||    8.9%   ||||               5.3%   [13, 14]   
+9      conv2d_9                 |                  0.5%   |                  0.4%   [11]       
+10     eltwise_10               |                  0.0%   |                  0.0%   [15]       
+11     conv2d_11                |||||||||||||||    8.9%   ||||               5.3%   [16, 17]   
+12     conv2d_12                |||||||||||||||    8.9%   ||||               5.3%   [18, 19]   
+13     eltwise_13               |                  0.0%   |                  0.0%   [20]       
+14     conv2d_14                ||||||||           4.5%   ||||||||          10.6%   [21, 22]   
+15     conv2d_15                ||||||||||||||||   8.9%   ||||||||||||||||  21.1%   [23, 24]   
+16     conv2d_16                |                  0.5%   |                  1.3%   [25]       
+17     eltwise_17               |                  0.0%   |                  0.0%   [26]       
+18     conv2d_18                ||||||||||||||||   8.9%   ||||||||||||||||  21.1%   [27, 28]   
+19     conv2d_19                ||||||||||||||||   8.9%   ||||||||||||||||  21.1%   [29, 30]   
+20     eltwise_20               |                  0.0%   |                  0.0%   [31]       
+21     pool_21                  |                  0.0%   |                  0.0%   [32]       
+22     tfl_pseudo_qconst1       |                  0.0%   |                  0.4%   [33]       
+23     nl_23                    |                  0.0%   |                  0.0%   [34]       
+------ ------------------------ ------------------------- ------------------------- ---------- 
+macc=20,231,696 weights=176,120 act=35,104 ram_io=0
+ 
+ Requested memory size by section - "stm32f4" target
+ ------------------------------ -------- --------- ------- -------- 
+ module                             text    rodata    data      bss 
+ ------------------------------ -------- --------- ------- -------- 
+ NetworkRuntime1100_CM4_GCC.a     27,704         0       0        0 
+ network.o                         5,274     2,770   2,448       72 
+ lib (toolchain)*                      0         0       0        0 
+ ------------------------------ -------- --------- ------- -------- 
+ RT total**                       32,978     2,770   2,448       72 
+ ------------------------------ -------- --------- ------- -------- 
+ weights                               0   176,120       0        0 
+ activations                           0         0       0   35,104 
+ states                                0         0       0        0 
+ io                                    0         0       0        0 
+ ------------------------------ -------- --------- ------- -------- 
+ TOTAL                            32,978   178,890   2,448   35,176 
+ ------------------------------ -------- --------- ------- -------- 
+ *  toolchain objects (libm/libgcc*)
+ ** RT AI runtime objects (kernels+infrastructure)
+  
+  Summary - "stm32f4" target
+  --------------------------------------------------
+               FLASH (ro)      %*   RAM (rw)      % 
+  --------------------------------------------------
+  RT total         38,196   17.8%      2,520   6.7% 
+  --------------------------------------------------
+  TOTAL           214,316             37,624        
+  --------------------------------------------------
+  *  rt/total
+
+
+Generated files (5)
+---------------------------------------------------------------------------------------------- 
+/tmp/rootDir-a5766b98-bc0b-4bb3-9d7f-b277982bd4cb/NUCLEO-F446RE/.ai/output/network_data.h      
+/tmp/rootDir-a5766b98-bc0b-4bb3-9d7f-b277982bd4cb/NUCLEO-F446RE/.ai/output/network_data.c      
+/tmp/rootDir-a5766b98-bc0b-4bb3-9d7f-b277982bd4cb/NUCLEO-F446RE/.ai/output/network.h           
+/tmp/rootDir-a5766b98-bc0b-4bb3-9d7f-b277982bd4cb/NUCLEO-F446RE/.ai/output/network.c           
+/tmp/rootDir-a5766b98-bc0b-4bb3-9d7f-b277982bd4cb/NUCLEO-F446RE/.ai/output/network_details.h   
