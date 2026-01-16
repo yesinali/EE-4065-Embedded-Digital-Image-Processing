@@ -1,0 +1,73 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{geometry}
+
+\geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+}
+
+\title{Modernization of STM32 AI ModelZoo Infrastructure and Quantized Object Detection on ESP32-CAM}
+\author{Project Report}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+In this study, an end-to-end object detection workflow for low-resource edge devices (Edge AI) has been developed based on legacy versions of the STM32 AI ModelZoo library. Within the scope of the project, the \textbf{st\_yolo\_lc\_v1} architecture was modernized, trained with expanded datasets, and successfully integrated into ESP32-CAM hardware by applying 8-bit quantization.
+\end{abstract}
+
+\section{Introduction}
+In embedded computer vision projects, adapting legacy codebases to be compatible with current hardware and libraries is a critical step. In this project, the lightweight \textit{st\_yolo\_lc\_v1} architecture was utilized for the detection of handwritten digits (5-9). The primary objective of the study is to maximize detection performance (mAP) while minimizing the model's memory footprint.
+
+\section{Methodology}
+
+\subsection{Dataset Preparation and Format Conversion}
+Initially, a small dataset consisting of 70 images was used for the training process; however, due to insufficient performance, the dataset was expanded.
+\begin{itemize}
+    \item \textbf{Data Expansion:} The training dataset was increased to 290 images.
+    \item \textbf{Format Modernization:} The \textit{.tfs} format structure, which is required for model training but was absent in the source dataset, was created by converting existing YOLO (.txt) label files.
+\end{itemize}
+
+\subsection{Model Training and Optimization}
+The model was configured with a 96x96x3 input resolution and trained using STM32 training scripts.
+\begin{itemize}
+    \item \textbf{Training Improvement:} Low performance issues encountered in initial trials were overcome by enlarging the dataset and optimizing hyperparameters. The mAP value, which was 56.2\% with the small dataset, was increased to 86.9\% with the expanded dataset.
+    \item \textbf{Quantization:} To optimize model size and inference time, post-training 8-bit integer quantization was applied. The resulting TFLite model is only \textbf{337 KB} in size.
+\end{itemize}
+
+\subsection{Embedded System Integration (ESP32-CAM)}
+The generated quantized model was converted into a C header file (\texttt{model\_data.h}) to be executed on the ESP32 platform.
+\begin{itemize}
+    \item \textbf{Library Update:} Legacy STM32 example codes were made compatible with the current \texttt{TensorFlowLite\_ESP32} library.
+    \item \textbf{Inference Engine:} The \texttt{MicroInterpreter} and \texttt{AllOpsResolver} structures were revised according to modern TFLite Micro standards, ensuring error-free inference on the ESP32-CAM.
+\end{itemize}
+
+\section{Experimental Results}
+The results obtained with the expanded dataset and optimized training parameters are presented in Table \ref{tab:results}. The overall performance of the model (mAP) was measured at \textbf{86.9\%}.
+
+\begin{table}[h]
+\centering
+\caption{Class-wise Performance Metrics (Quantized Model)}
+\label{tab:results}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+\textbf{Class} & \textbf{Precision} & \textbf{Recall} & \textbf{AP (Average Precision)} \\ \midrule
+Eight (8) & 97.5\% & 100\% & \textbf{99.5\%} \\
+Nine (9)  & 96.6\% & 100\% & \textbf{99.5\%} \\
+Five (5)  & 95.8\% & 77.8\% & 87.5\% \\
+Six (6)   & 86.5\% & 75.0\% & 84.2\% \\
+Seven (7) & 73.3\% & 57.1\% & 63.8\% \\ \bottomrule
+\end{tabular}
+\end{table}
+
+\section{Conclusion}
+With this study, legacy AI modeling tools were successfully modernized and adapted to ESP32-CAM hardware. The model, which has a very low memory footprint of 337 KB, is capable of detecting handwritten digits with high accuracy. In particular, the increase in performance for the "Five" (5) class from 0\% to 87.5\% demonstrates the success of the dataset expansion and optimization strategies.
+
+\end{document}

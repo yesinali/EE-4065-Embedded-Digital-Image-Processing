@@ -1,0 +1,66 @@
+\section{Question 2: YOLO Model and Object Detection}
+
+\textbf{Note:} The technical details and explanations in this section have been compiled from the \texttt{Q2/Q2.tex} file.
+
+\subsection{Introduction}
+In embedded computer vision projects, adapting legacy codebases to be compatible with current hardware and libraries is a critical step. In this project, the lightweight \textit{st\_yolo\_lc\_v1} architecture was utilized for the detection of handwritten digits (5-9). The primary objective of the study is to maximize detection performance (mAP) while minimizing the model's memory footprint.
+
+\subsection{Methodology}
+
+\subsubsection{Dataset Preparation and Format Conversion}
+Initially, a small dataset consisting of 70 images was used for the training process; however, due to insufficient performance, the dataset was expanded.
+\begin{itemize}
+    \item \textbf{Data Expansion:} The training dataset was increased to 290 images. The dataset can be accessed at: \url{https://app.roboflow.com/ds/dYJXWYCHsE?key=3mqtC40lVJ}.
+    \item \textbf{Format Modernization:} The \textit{.tfs} format structure, which is required for model training but was absent in the source dataset, was created by converting existing YOLO (.txt) label files.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=0.8\linewidth]{../Q2/5.jpeg}
+        \caption{Sample Digit: 5}
+    \end{minipage}\hfill
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=0.8\linewidth]{../Q2/9.jpeg}
+        \caption{Sample Digit: 9}
+    \end{minipage}
+    \caption{Example Images from the Dataset}
+    \label{fig:q2_samples}
+\end{figure}
+
+\subsubsection{Model Training and Optimization}
+The model was configured with a 96x96x3 input resolution and trained using STM32 training scripts.
+\begin{itemize}
+    \item \textbf{Training Improvement:} Low performance issues encountered in initial trials were overcome by enlarging the dataset and optimizing hyperparameters. The mAP value, which was 56.2\% with the small dataset, was increased to 86.9\% with the expanded dataset.
+    \item \textbf{Quantization:} To optimize model size and inference time, post-training 8-bit integer quantization was applied. The resulting TFLite model is only \textbf{337 KB} in size. The model weights are available as a C array within a header file in \texttt{Q1/model\_data.h} (or the relevant header file).
+\end{itemize}
+
+\subsubsection{Embedded System Integration (ESP32-CAM)}
+The generated quantized model was converted into a C header file to be executed on the ESP32 platform.
+\begin{itemize}
+    \item \textbf{Library Update:} Legacy STM32 example codes were made compatible with the current \texttt{TensorFlowLite\_ESP32} library.
+    \item \textbf{Inference Engine:} The \texttt{MicroInterpreter} and \texttt{AllOpsResolver} structures were revised according to modern TFLite Micro standards, ensuring error-free inference on the ESP32-CAM. The ESP code is available in \texttt{Q2/Q2.ino}.
+\end{itemize}
+
+\subsection{Experimental Results}
+The results obtained with the expanded dataset and optimized training parameters show an overall model performance (mAP) of \textbf{86.9\%}.
+
+\begin{table}[h]
+\centering
+\caption{Class-wise Performance Metrics (Quantized Model)}
+\label{tab:results}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+\textbf{Class} & \textbf{Precision} & \textbf{Recall} & \textbf{AP (Average Precision)} \\ \midrule
+Eight (8) & 97.5\% & 100\% & \textbf{99.5\%} \\
+Nine (9)  & 96.6\% & 100\% & \textbf{99.5\%} \\
+Five (5)  & 95.8\% & 77.8\% & 87.5\% \\
+Six (6)   & 86.5\% & 75.0\% & 84.2\% \\
+Seven (7) & 73.3\% & 57.1\% & 63.8\% \\ \bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Conclusion}
+With this study, legacy AI modeling tools were successfully modernized and adapted to ESP32-CAM hardware. The model, which has a very low memory footprint of 337 KB, is capable of detecting handwritten digits with high accuracy.

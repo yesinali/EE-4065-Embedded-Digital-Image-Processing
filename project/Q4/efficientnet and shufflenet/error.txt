@@ -1,0 +1,1 @@
+Didn't find op for builtin opcode 'SHAPE' version '1'. An older version of this builtin might be supported. Are you using an old TFLite binary with a newer model?

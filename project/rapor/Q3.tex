@@ -1,0 +1,32 @@
+\section{Question 3: Upsampling and Downsampling}
+
+In this section, image resizing techniques, namely Upsampling and Downsampling, have been implemented on the ESP32-CAM.
+
+\subsection{Implementation Details}
+The firmware implemented in \texttt{Q3/Q3.ino} provides a web-based interface for real-time image resizing using the ESP32-CAM. The core functionalities include:
+
+\subsubsection{Image Resizing Algorithm}
+The \texttt{resizeImage} function implements a \textbf{Nearest Neighbor Interpolation} algorithm to scale images efficiently on the microcontroller:
+\begin{itemize}
+    \item It calculates \texttt{x\_ratio} and \texttt{y\_ratio} based on the source and target dimensions.
+    \item For every pixel in the target image, it maps back to the corresponding coordinate in the source image.
+    \item It directly copies the pixel value from the calculated source coordinate without weighted averaging, which minimizes CPU usage and memory bandwidth, operating in $O(W_{new} \times H_{new})$ time complexity.
+\end{itemize}
+
+\subsubsection{Web Server Architeture}
+The system uses the \texttt{esp\_http\_server} library to host a control interface:
+\begin{itemize}
+    \item \textbf{Index Handler (root '/'):} Serves an HTML page containing input controls (slider) and an image element. JavaScript is used to dynamically update the image source with the selected scale parameter.
+    \item \textbf{Capture Handler ('/capture'):} 
+    \begin{enumerate}
+        \item Parses the \texttt{scale} query parameter from the URL.
+        \item Captures a frame from the camera.
+        \item Allocates a new buffer and applies the resizing algorithm.
+        \item Generates a BMP header dynamically based on the new dimensions.
+        \item Streams the BMP header, color palette (grayscale), and pixel data to the client.
+        \item Frees the allocated memory to prevent leakage.
+    \end{enumerate}
+\end{itemize}
+
+\subsection{Web Interface}
+The system publishes the results of its image processing operations via a web server. The ESP32 hosts a web page on the local network, allowing the user to view the processed images instantly through a browser. This allows for visual verification of the algorithm's success.
